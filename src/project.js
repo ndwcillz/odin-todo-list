@@ -8,8 +8,8 @@ export class Project {
         this.id = crypto.randomUUID();
     }
 
-    addTodo(title, description, dueDate, priority, notes) {
-        const todo = new Todo(title, description, dueDate, priority, notes);
+    addTodo(title, description, dueDate, priority) {
+        const todo = new Todo(title, description, dueDate, priority);
         this.todos.push(todo);
         return todo;
     }

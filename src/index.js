@@ -2,16 +2,18 @@ import './styles.css';
 import { ProjectLibrary } from './projectLibrary.js';
 import { renderProjects, renderTodos, renderProjectDetails } from './dom.js';
 
-const projectLibrary = new ProjectLibrary();
-const defaultProject = projectLibrary.addProject("Default Project", "This is the default project.");
-renderProjects(projectLibrary.projects);
-const defaultTodo = defaultProject.addTodo("Default Todo", "This is the default todo.", "2024-06-01", "1", "Enter Notes Here");
-renderProjectDetails(defaultProject);
-renderTodos(defaultProject.todos);
 
 
 
 /* ---test code 
+const projectLibrary = new ProjectLibrary();
+const defaultProject = projectLibrary.addProject("Default Project", "This is the default project.");
+renderProjects(projectLibrary.projects);
+const defaultTodo = defaultProject.addTodo("Default Todo", "This is the default todo.", "2024-06-01", "Medium");
+renderProjectDetails(defaultProject);
+renderTodos(defaultProject.todos);
+
+
 console.log(projectLibrary);
 projectLibrary.projects[0].addTodo("Sample Title", "Sample Description", "2024-06-01", "1", "Sample Notes");
 console.log(projectLibrary.projects[0]);
