@@ -84,14 +84,6 @@ body {
     justify-content: center;
 }
 
-.todo-actions button {
-    cursor: pointer;
-    padding: 8px 12px;
-    background-color: rgb(246, 194, 255);
-    border: 2px solid black;
-    border-radius: 7px;
-}
-
 .todo-info {
     display: flex;
     flex-direction: column;
@@ -147,4 +139,36 @@ body {
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+
+.delete-todo-button {
+    cursor: pointer;
+    padding: 8px 12px;
+    background-color: rgb(255, 102, 102);
+    border: 2px solid black;
+    border-radius: 7px;
+}
+
+.edit-todo-button {
+    cursor: pointer;
+    padding: 8px 12px;
+    background-color: rgb(102, 178, 255);
+    border: 2px solid black;
+    border-radius: 7px;
+}
+
+.todo-actions > button {
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 2px solid black;
+    border-radius: 7px;
+    width: 100px;
+}
+
+.project-buttons-div > button {
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 2px solid black;
+    border-radius: 7px;
+    width: 100px;
 }

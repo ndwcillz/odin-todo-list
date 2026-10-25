@@ -77,11 +77,15 @@ export const renderTodos = (todos) => {
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-todo-button');
         todoActionsDiv.appendChild(deleteButton);
+        
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
+        editButton.classList.add('edit-todo-button');
         todoActionsDiv.appendChild(editButton);
+        
 
         todoContainer.appendChild(todoDiv);
     }
