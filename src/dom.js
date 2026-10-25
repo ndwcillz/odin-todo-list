@@ -1,3 +1,4 @@
+// render list of projects
 export const renderProjects = (projects) => {
     const projectList = document.getElementById('project-list');
     projectList.innerHTML = '';
@@ -9,6 +10,7 @@ export const renderProjects = (projects) => {
     }
 };
 
+// render project details and add todo/delete project button
 export const renderProjectDetails = (project) => {
     const projectDetails = document.getElementById('project-details');
     projectDetails.innerHTML = '';
@@ -44,6 +46,7 @@ export const renderProjectDetails = (project) => {
     }
 };
 
+// render list of todos
 export const renderTodos = (todos) => {
     const todoContainer = document.getElementById('todo-container');
     todoContainer.innerHTML = '';
@@ -89,4 +92,38 @@ export const renderTodos = (todos) => {
 
         todoContainer.appendChild(todoDiv);
     }
+};
+
+// render dialog for adding project
+export const renderAddProjectDialog = () => {
+    const projectDialog = document.createElement('dialog');
+    projectDialog.id = 'add-project-dialog';
+
+    projectDialog.innerHTML = `
+        <form>
+            <label for="project-name">Project Name:</label>
+            <input required type="text" id="project-name" name="project-name" placeholder="My Project">
+            <label for="project-description">Project Description:</label>
+            <textarea required id="project-description" name="project-description" placeholder="My Project Description"></textarea>
+            <button type="submit" id="submit-add-project">Add Project</button>
+            <button type="button" id="cancel-add-project">Cancel</button>
+        </form>
+    `;
+    document.body.appendChild(projectDialog);
+
+    projectDialog.showModal();
+
+
+    projectDialog.querySelector('form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        projectDialog.close();
+    });
+    
+    projectDialog.querySelector('#cancel-add-project').addEventListener('click', () => {
+        projectDialog.close();
+    });
+
+    projectDialog.addEventListener('close', () => {
+        projectDialog.remove();
+    });
 };

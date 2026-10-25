@@ -1,14 +1,20 @@
 import './styles.css';
 import { ProjectLibrary } from './projectLibrary.js';
-import { renderProjects, renderTodos, renderProjectDetails } from './dom.js';
+import { renderProjects, renderTodos, renderProjectDetails, renderAddProjectDialog } from './dom.js';
 
+
+// Initial rendering of the default project and one default todo
 const projectLibrary = new ProjectLibrary();
-const defaultProject = projectLibrary.defaultProject;
 renderProjects(projectLibrary.projects);
-const defaultTodo = defaultProject.addTodo("Default Todo", "This is the default todo.", "2024-06-01", "Medium");
+const defaultProject = projectLibrary.defaultProject;
 renderProjectDetails(defaultProject);
 renderTodos(defaultProject.todos);
 
+// add project and render it
+const addProjectButton = document.getElementById('add-project-button');
+addProjectButton.addEventListener('click', () => {
+    renderAddProjectDialog();
+}); 
 
 /* ---test code 
 
