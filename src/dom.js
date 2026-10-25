@@ -13,6 +13,10 @@ export const renderProjectDetails = (project) => {
     const projectDetails = document.getElementById('project-details');
     projectDetails.innerHTML = '';
     if (project) {
+        const projectDetailsDiv = document.createElement('div');
+        projectDetails.appendChild(projectDetailsDiv);
+        projectDetailsDiv.classList.add('project-details-div');
+
         const projectTitle = document.createElement('h3');
         projectTitle.textContent = project.name;
         projectTitle.classList.add('project-title');
@@ -20,8 +24,23 @@ export const renderProjectDetails = (project) => {
         const projectDescription = document.createElement('p');
         projectDescription.textContent = project.description;
         projectDescription.classList.add('project-description');
-        projectDetails.appendChild(projectTitle);
-        projectDetails.appendChild(projectDescription);
+
+        projectDetailsDiv.appendChild(projectTitle);
+        projectDetailsDiv.appendChild(projectDescription);
+
+        const projectButtonsDiv = document.createElement('div');
+        projectButtonsDiv.classList.add('project-buttons-div');
+        projectDetailsDiv.appendChild(projectButtonsDiv);
+
+        const addTodoButton = document.createElement('button');
+        addTodoButton.textContent = 'Add Todo';
+        projectButtonsDiv.appendChild(addTodoButton);
+        addTodoButton.classList.add('add-todo-button');
+
+        const deleteProjectButton = document.createElement('button');
+        deleteProjectButton.textContent = 'Delete Project';
+        projectButtonsDiv.appendChild(deleteProjectButton);
+        deleteProjectButton.classList.add('delete-project-button');
     }
 };
 
