@@ -1,7 +1,13 @@
 import './styles.css';
 import { ProjectLibrary } from './projectLibrary.js';
+import { renderProjects, renderTodos, renderProjectDetails } from './dom.js';
 
 const projectLibrary = new ProjectLibrary();
+const defaultProject = projectLibrary.addProject("Default Project", "This is the default project.");
+renderProjects(projectLibrary.projects);
+const defaultTodo = defaultProject.addTodo("Default Todo", "This is the default todo.", "2024-06-01", "1", "Enter Notes Here");
+renderProjectDetails(defaultProject);
+renderTodos(defaultProject.todos);
 
 
 
