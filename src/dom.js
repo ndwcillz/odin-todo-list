@@ -1,5 +1,5 @@
 // render list of projects
-export const renderProjects = (projects) => {
+export const renderProjects = (projects, onProjectSelect) => {
     const projectList = document.getElementById('project-list');
     projectList.innerHTML = '';
     for (const project of projects) {
@@ -7,6 +7,10 @@ export const renderProjects = (projects) => {
         projectButton.textContent = project.name;
         projectList.appendChild(projectButton);
         projectButton.classList.add('project-button');
+        
+        projectButton.addEventListener('click', () => {
+            onProjectSelect(project.id);
+        });
     }
 };
 

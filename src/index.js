@@ -8,7 +8,10 @@ const projectLibrary = new ProjectLibrary();
 
 let selectedProject = projectLibrary.defaultProject;
 const render = (project) => {
-    renderProjects(projectLibrary.projects);
+    renderProjects(projectLibrary.projects, (projectId) => {
+        selectedProject = projectLibrary.getProject(projectId);
+        render(selectedProject);
+    });
     renderProjectDetails(project);
     renderTodos(project.todos);
 };
