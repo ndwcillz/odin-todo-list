@@ -95,7 +95,7 @@ export const renderTodos = (todos) => {
 };
 
 // render dialog for adding project
-export const renderAddProjectDialog = () => {
+export const renderAddProjectDialog = (onSubmit) => {
     const projectDialog = document.createElement('dialog');
     projectDialog.id = 'add-project-dialog';
 
@@ -116,6 +116,13 @@ export const renderAddProjectDialog = () => {
 
     projectDialog.querySelector('form').addEventListener('submit', (event) => {
         event.preventDefault();
+
+        const formData = new FormData(projectDialog.querySelector('form'));
+        const projectName = formData.get('project-name');
+        const projectDescription = formData.get('project-description');
+
+        onSubmit(projectName, projectDescription);
+
         projectDialog.close();
     });
     

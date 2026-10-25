@@ -5,16 +5,28 @@ import { renderProjects, renderTodos, renderProjectDetails, renderAddProjectDial
 
 // Initial rendering of the default project and one default todo
 const projectLibrary = new ProjectLibrary();
-renderProjects(projectLibrary.projects);
-const defaultProject = projectLibrary.defaultProject;
-renderProjectDetails(defaultProject);
-renderTodos(defaultProject.todos);
+
+let selectedProject = projectLibrary.defaultProject;
+const render = (project) => {
+    renderProjects(projectLibrary.projects);
+    renderProjectDetails(project);
+    renderTodos(project.todos);
+};
+
+render(selectedProject);
 
 // add project and render it
 const addProjectButton = document.getElementById('add-project-button');
 addProjectButton.addEventListener('click', () => {
-    renderAddProjectDialog();
+    renderAddProjectDialog((name, description) => {
+        const newProject = projectLibrary.addProject(name, description);
+        selectedProject = newProject;
+        render(selectedProject);
+    });
 }); 
+
+
+
 
 /* ---test code 
 
