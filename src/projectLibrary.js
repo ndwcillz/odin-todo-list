@@ -3,7 +3,7 @@ import { Project } from './project.js';
 export class ProjectLibrary {
     constructor() {
         this.projects = [];
-        this.addProject("Default Project", "This is the default project.");
+        this.defaultProject = this.addProject("Default Project", "This is the default project.");
     }
 
     addProject(name, description) {
@@ -13,6 +13,10 @@ export class ProjectLibrary {
     }
 
     removeProject(projectId) {
+        if (projectId === this.defaultProject.id) {
+            return; // Prevent removing the default project
+        }
+        
         this.projects = this.projects.filter(project => project.id !== projectId);
     }
 
