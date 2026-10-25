@@ -14,4 +14,8 @@ export class ProjectLibrary {
     removeProject(projectId) {
         this.projects = this.projects.filter(project => project.id !== projectId);
     }
+
+    getProject(projectId) {
+        return this.projects.find(project => project.id === projectId);
+    }
 }
