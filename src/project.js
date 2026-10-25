@@ -5,6 +5,7 @@ export class Project {
         this.name = name;
         this.description = description;
         this.todos = [];
+        this.id = crypto.randomUUID();
     }
 
     addTodo(title, description, dueDate, priority, notes) {

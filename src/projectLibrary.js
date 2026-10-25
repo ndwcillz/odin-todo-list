@@ -10,4 +10,8 @@ export class ProjectLibrary {
         this.projects.push(project);
         return project;
     }
+
+    removeProject(projectId) {
+        this.projects = this.projects.filter(project => project.id !== projectId);
+    }
 }
