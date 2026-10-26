@@ -104,7 +104,7 @@ export const renderAddProjectDialog = (onSubmit) => {
     projectDialog.id = 'add-project-dialog';
 
     projectDialog.innerHTML = `
-        <form>
+        <form id="add-project-form">
             <label for="project-name">Project Name:</label>
             <input required type="text" id="project-name" name="project-name" placeholder="My Project">
             <label for="project-description">Project Description:</label>
