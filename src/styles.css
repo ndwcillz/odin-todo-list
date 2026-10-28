@@ -199,7 +199,7 @@ body {
 #project-description {
     min-height: 100px;
     min-width: 300px;
-    max-height: 60vh;
+    max-height: 30vh;
     max-width: 60vw;
     padding: 10px;
     border-radius: 7px;
@@ -222,6 +222,55 @@ body {
 }
 
 #cancel-add-project {
+    cursor: pointer;
+    padding: 8px 12px;
+    background-color: rgb(255, 102, 102);
+    border: 2px solid black;
+    border-radius: 7px;
+}
+
+#add-todo-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 300px;
+    min-height: 300px;
+    border-radius: 20px;
+}
+
+#add-todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 50px;
+}
+
+#todo-title,
+#todo-description,
+#todo-due-date,
+#todo-priority {
+    min-width: 300px;
+    padding: 10px;
+    border-radius: 7px;
+    border: 2px solid black;
+}
+
+#todo-description {
+    min-height: 100px;
+    max-height: 30vh;
+    max-width: 60vw;
+}
+
+#submit-add-todo {
+    cursor: pointer;
+    padding: 8px 12px;
+    background-color: rgb(102, 255, 178);
+    border: 2px solid black;
+    border-radius: 7px;
+}
+
+#cancel-add-todo {
     cursor: pointer;
     padding: 8px 12px;
     background-color: rgb(255, 102, 102);
