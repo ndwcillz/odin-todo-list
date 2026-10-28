@@ -14,8 +14,8 @@ export class ProjectLibrary {
     }
 
     removeProject(projectId) {
-        if (projectId === this.defaultProject.id) {
-            return; // Prevent removing the default project
+        if (this.projects.length === 1) {
+            return; // Prevent removing all projects, keep at least one project
         }
         
         this.projects = this.projects.filter(project => project.id !== projectId);

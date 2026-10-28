@@ -2,21 +2,27 @@ import './styles.css';
 import { ProjectLibrary } from './projectLibrary.js';
 import { renderProjects, renderTodos, renderProjectDetails, renderAddProjectDialog } from './dom.js';
 
-
-// Initial rendering of the default project and one default todo
 const projectLibrary = new ProjectLibrary();
 
 let selectedProject = projectLibrary.defaultProject;
-const render = (project) => {
+const render = () => {
     renderProjects(projectLibrary.projects, (projectId) => {
         selectedProject = projectLibrary.getProject(projectId);
-        render(selectedProject);
+        render();
     });
-    renderProjectDetails(project);
-    renderTodos(project.todos);
+    let canDelete = false;
+    if (projectLibrary.projects.length > 1) {
+        canDelete = true;
+    }
+    renderProjectDetails(selectedProject, (projectId) => {
+        projectLibrary.removeProject(projectId);
+        selectedProject = projectLibrary.projects[0]; // Select the first project after deletion
+        render();
+    }, canDelete);
+    renderTodos(selectedProject.todos);
 };
 
-render(selectedProject);
+render();
 
 // add project and render it
 const addProjectButton = document.getElementById('add-project-button');
@@ -27,6 +33,7 @@ addProjectButton.addEventListener('click', () => {
         render(selectedProject);
     });
 }); 
+
 
 
 

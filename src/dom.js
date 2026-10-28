@@ -15,7 +15,7 @@ export const renderProjects = (projects, onProjectSelect) => {
 };
 
 // render project details and add todo/delete project button
-export const renderProjectDetails = (project) => {
+export const renderProjectDetails = (project, onDeleteProject, canDelete) => {
     const projectDetails = document.getElementById('project-details');
     projectDetails.innerHTML = '';
     if (project) {
@@ -43,10 +43,16 @@ export const renderProjectDetails = (project) => {
         projectButtonsDiv.appendChild(addTodoButton);
         addTodoButton.classList.add('add-todo-button');
 
-        const deleteProjectButton = document.createElement('button');
-        deleteProjectButton.textContent = 'Delete Project';
-        projectButtonsDiv.appendChild(deleteProjectButton);
-        deleteProjectButton.classList.add('delete-project-button');
+        if (canDelete) {
+            const deleteProjectButton = document.createElement('button');
+            deleteProjectButton.textContent = 'Delete Project';
+            projectButtonsDiv.appendChild(deleteProjectButton);
+            deleteProjectButton.classList.add('delete-project-button');
+
+            deleteProjectButton.addEventListener('click', () => {
+            onDeleteProject(project.id);
+            });
+        }
     }
 };
 
