@@ -15,7 +15,7 @@ export const renderProjects = (projects, onProjectSelect) => {
 };
 
 // render project details and add todo/delete project button
-export const renderProjectDetails = (project, onDeleteProject, canDelete) => {
+export const renderProjectDetails = (project, onDeleteProject, canDelete, onAddTodo) => {
     const projectDetails = document.getElementById('project-details');
     projectDetails.innerHTML = '';
     if (project) {
@@ -42,6 +42,10 @@ export const renderProjectDetails = (project, onDeleteProject, canDelete) => {
         addTodoButton.textContent = 'Add Todo';
         projectButtonsDiv.appendChild(addTodoButton);
         addTodoButton.classList.add('add-todo-button');
+
+        addTodoButton.addEventListener('click', () => {
+            onAddTodo();
+        });
 
         if (canDelete) {
             const deleteProjectButton = document.createElement('button');
@@ -142,5 +146,55 @@ export const renderAddProjectDialog = (onSubmit) => {
 
     projectDialog.addEventListener('close', () => {
         projectDialog.remove();
+    });
+};
+
+// render dialog for adding todo
+export const renderAddTodoDialog = (onSubmit) => {
+    const todoDialog = document.createElement('dialog');
+    todoDialog.id = 'add-todo-dialog';
+
+    todoDialog.innerHTML = `
+        <form id="add-todo-form">
+            <label for="todo-title">Todo Title:</label>
+            <input required type="text" id="todo-title" name="todo-title" placeholder="My Todo">
+            <label for="todo-description">Todo Description:</label>
+            <textarea required id="todo-description" name="todo-description" placeholder="My Todo Description"></textarea>
+            <label for="todo-due-date">Due Date:</label>
+            <input required type="date" id="todo-due-date" name="todo-due-date">
+            <label for="todo-priority">Priority:</label>
+            <select required id="todo-priority" name="todo-priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <button type="submit" id="submit-add-todo">Add Todo</button>
+            <button type="button" id="cancel-add-todo">Cancel</button>
+        </form>
+    `;
+    document.body.appendChild(todoDialog);
+
+    todoDialog.showModal();
+
+    todoDialog.querySelector('form').addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(todoDialog.querySelector('form'));
+        const todoTitle = formData.get('todo-title');
+        const todoDescription = formData.get('todo-description');
+        const todoDueDate = formData.get('todo-due-date');
+        const todoPriority = formData.get('todo-priority');
+
+        onSubmit(todoTitle, todoDescription, todoDueDate, todoPriority);
+
+        todoDialog.close();
+    });
+    
+    todoDialog.querySelector('#cancel-add-todo').addEventListener('click', () => {
+        todoDialog.close();
+    });
+
+    todoDialog.addEventListener('close', () => {
+        todoDialog.remove();
     });
 };

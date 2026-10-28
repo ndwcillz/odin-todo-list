@@ -1,6 +1,6 @@
 import './styles.css';
 import { ProjectLibrary } from './projectLibrary.js';
-import { renderProjects, renderTodos, renderProjectDetails, renderAddProjectDialog } from './dom.js';
+import { renderProjects, renderTodos, renderProjectDetails, renderAddProjectDialog, renderAddTodoDialog } from './dom.js';
 
 const projectLibrary = new ProjectLibrary();
 
@@ -18,7 +18,12 @@ const render = () => {
         projectLibrary.removeProject(projectId);
         selectedProject = projectLibrary.projects[0]; // Select the first project after deletion
         render();
-    }, canDelete);
+    }, canDelete, () => {
+        renderAddTodoDialog((title, description, dueDate, priority) => {
+            selectedProject.addTodo(title, description, dueDate, priority);
+            render();
+        });
+    });
     renderTodos(selectedProject.todos);
 };
 
@@ -30,7 +35,7 @@ addProjectButton.addEventListener('click', () => {
     renderAddProjectDialog((name, description) => {
         const newProject = projectLibrary.addProject(name, description);
         selectedProject = newProject;
-        render(selectedProject);
+        render();
     });
 }); 
 

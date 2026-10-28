@@ -3,7 +3,7 @@ import { Project } from './project.js';
 export class ProjectLibrary {
     constructor() {
         this.projects = [];
-        this.defaultProject = new Project('Default Project', 'This is the default project.');
+        this.defaultProject = new Project('First Project', 'This is your first project.');
         this.projects.push(this.defaultProject);
     }
 
