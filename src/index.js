@@ -27,6 +27,12 @@ const render = () => {
     renderTodos(selectedProject.todos, (todoId) => {
         selectedProject.removeTodo(todoId);
         render();
+    }, (todoId) => {
+        const todo = selectedProject.getTodo(todoId);
+        renderAddTodoDialog((title, description, dueDate, priority) => {
+            todo.update(title, description, dueDate, priority);
+            render();
+        }, todo);
     });
 };
 

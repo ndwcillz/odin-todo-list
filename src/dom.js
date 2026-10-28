@@ -61,7 +61,7 @@ export const renderProjectDetails = (project, onDeleteProject, canDelete, onAddT
 };
 
 // render list of todos
-export const renderTodos = (todos, onDeleteTodo) => {
+export const renderTodos = (todos, onDeleteTodo, onEditTodo) => {
     const todoContainer = document.getElementById('todo-container');
     todoContainer.innerHTML = '';
     for (const todo of todos) {
@@ -106,6 +106,9 @@ export const renderTodos = (todos, onDeleteTodo) => {
         editButton.classList.add('edit-todo-button');
         todoActionsDiv.appendChild(editButton);
         
+        editButton.addEventListener('click', () => {
+            onEditTodo(todo.id);
+        });
 
         todoContainer.appendChild(todoDiv);
     }
@@ -153,7 +156,7 @@ export const renderAddProjectDialog = (onSubmit) => {
 };
 
 // render dialog for adding todo
-export const renderAddTodoDialog = (onSubmit) => {
+export const renderAddTodoDialog = (onSubmit, editTodo) => {
     const todoDialog = document.createElement('dialog');
     todoDialog.id = 'add-todo-dialog';
 
@@ -176,6 +179,14 @@ export const renderAddTodoDialog = (onSubmit) => {
         </form>
     `;
     document.body.appendChild(todoDialog);
+
+    if (editTodo) {
+        todoDialog.querySelector('#todo-title').value = editTodo.title;
+        todoDialog.querySelector('#todo-description').value = editTodo.description;
+        todoDialog.querySelector('#todo-due-date').value = editTodo.dueDate;
+        todoDialog.querySelector('#todo-priority').value = editTodo.priority;
+        todoDialog.querySelector('#submit-add-todo').textContent = 'Update Todo';
+    }
 
     todoDialog.showModal();
 
