@@ -54,14 +54,14 @@ export const renderProjectDetails = (project, onDeleteProject, canDelete, onAddT
             deleteProjectButton.classList.add('delete-project-button');
 
             deleteProjectButton.addEventListener('click', () => {
-            onDeleteProject(project.id);
+                onDeleteProject(project.id);
             });
         }
     }
 };
 
 // render list of todos
-export const renderTodos = (todos) => {
+export const renderTodos = (todos, onDeleteTodo) => {
     const todoContainer = document.getElementById('todo-container');
     todoContainer.innerHTML = '';
     for (const todo of todos) {
@@ -97,6 +97,9 @@ export const renderTodos = (todos) => {
         deleteButton.classList.add('delete-todo-button');
         todoActionsDiv.appendChild(deleteButton);
         
+        deleteButton.addEventListener('click', () => {
+            onDeleteTodo(todo.id);
+        });
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';

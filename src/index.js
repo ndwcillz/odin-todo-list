@@ -24,7 +24,10 @@ const render = () => {
             render();
         });
     });
-    renderTodos(selectedProject.todos);
+    renderTodos(selectedProject.todos, (todoId) => {
+        selectedProject.removeTodo(todoId);
+        render();
+    });
 };
 
 render();
