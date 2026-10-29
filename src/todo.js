@@ -5,7 +5,6 @@ export class Todo {
         this.dueDate = dueDate;
         this.priority = priority;
         this.id = crypto.randomUUID();
-        this.completed = false;
     }
 
     update (title, description, dueDate, priority) {

@@ -2,8 +2,9 @@ import './styles.css';
 import { ProjectLibrary } from './projectLibrary.js';
 import { renderProjects, renderTodos, renderProjectDetails, renderAddProjectDialog, renderAddTodoDialog } from './dom.js';
 import { save } from './storage.js';
+import { load } from './storage.js';
 
-const projectLibrary = new ProjectLibrary();
+const projectLibrary = load();
 
 let selectedProject = projectLibrary.defaultProject;
 const render = () => {
