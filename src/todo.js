@@ -8,10 +8,6 @@ export class Todo {
         this.completed = false;
     }
 
-    toggleComplete() {
-        this.completed = !this.completed;
-    }
-
     update (title, description, dueDate, priority) {
         this.title = title;
         this.description = description;
