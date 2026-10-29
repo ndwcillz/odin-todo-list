@@ -79,6 +79,7 @@ export const renderTodos = (todos, onDeleteTodo, onEditTodo) => {
         const todoDescription = document.createElement('p');
         todoDescription.textContent = todo.description;
         todoInfoDiv.appendChild(todoDescription);
+        todoDescription.classList.add('todo-description');
 
         const todoDueDate = document.createElement('p');
         todoDueDate.textContent = `Due Date: ${todo.dueDate}`;
@@ -87,7 +88,13 @@ export const renderTodos = (todos, onDeleteTodo, onEditTodo) => {
         const todoPriority = document.createElement('p');
         todoPriority.textContent = `Priority: ${todo.priority}`;
         todoInfoDiv.appendChild(todoPriority);
-
+        if (todoPriority.textContent === 'Priority: High') {
+            todoDiv.classList.add('high-priority');
+        } else if (todoPriority.textContent === 'Priority: Medium') {
+            todoDiv.classList.add('medium-priority');
+        } else if (todoPriority.textContent === 'Priority: Low') {
+            todoDiv.classList.add('low-priority');
+        }
         const todoActionsDiv = document.createElement('div');
         todoActionsDiv.classList.add('todo-actions');
         todoDiv.appendChild(todoActionsDiv);
