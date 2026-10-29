@@ -1,6 +1,7 @@
 import './styles.css';
 import { ProjectLibrary } from './projectLibrary.js';
 import { renderProjects, renderTodos, renderProjectDetails, renderAddProjectDialog, renderAddTodoDialog } from './dom.js';
+import { save } from './storage.js';
 
 const projectLibrary = new ProjectLibrary();
 
@@ -34,6 +35,7 @@ const render = () => {
             render();
         }, todo);
     });
+    save(projectLibrary);
 };
 
 render();
